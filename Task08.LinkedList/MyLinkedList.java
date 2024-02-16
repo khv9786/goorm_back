@@ -1,18 +1,18 @@
-import java.util.Collection;
-import java.util.Iterator; // for-each 구현
-import java.util.List;
-import java.util.ListIterator;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
 
-
-public class MyLinkedList <T>  {
+public class MyLinkedList <T> implements Iterable<T> {
 
     private int size;
     private Node head;
+    private Node current;
 
     public MyLinkedList() {
         this.size = 0;
         this.head = null;
     }
+
+
     private class Node {
         private T data;
         private Node next;
@@ -70,10 +70,35 @@ public class MyLinkedList <T>  {
     }
 
     public int size() {
-        return this.size();
+        return this.size;
     }
 
     public boolean isEmpty() {
         return this.size == 0;
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
+    }
+
+    private class LinkedListIterator implements Iterator<T> {
+        private Node current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+            T data = current.data;
+            current = current.next;
+            return data;
+        }
+    }
+
 }
