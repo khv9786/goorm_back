@@ -1,53 +1,34 @@
-import java.util.EmptyStackException;
-
+import java.util.NoSuchElementException;
 public class MyStack<T> {
     private MyLinkedList<T> list = new MyLinkedList<>();
-    private int size;
-    private Node head;
 
-    private class Node {
-        T data;
-        Node next;
+    public void push(T element) {
+        list.add(element); // Elements are added to the end for simplicity
+    }
 
-        Node(T data, Node next) {
-            this.data = data;
-            this.next = next;
+    public T pop() {
+        if (list.isEmpty()) {
+            throw new NoSuchElementException("Stack is empty.");
         }
-    }
-
-    public MyStack() {
-        this.head = new Node(null, null); // head is a sentinel node
-        this.size = 0;
-    }
-
-    public synchronized void push(T data) {
-        Node node = new Node(data, head.next);
-        head.next = node;
-        size++;
-    }
-
-    public synchronized T pop() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
-        }
-        Node node = head.next;
-        head.next = node.next;
-        size--;
-        return node.data;
+        // Retrieve the last element to simulate stack behavior
+        T element = list.get(list.size() - 1);
+        list.delete(list.size() - 1);
+        return element;
     }
 
     public T peek() {
-        if (isEmpty()) {
-            throw new EmptyStackException();
+        if (list.isEmpty()) {
+            throw new NoSuchElementException("Stack is empty.");
         }
-        return head.next.data;
+        // Retrieve the last element without removing it
+        return list.get(list.size() - 1);
     }
 
     public boolean isEmpty() {
-        return size == 0;
+        return list.isEmpty();
     }
 
     public int size() {
-        return size;
+        return list.size();
     }
 }
