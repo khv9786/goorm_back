@@ -14,7 +14,6 @@ public class Main {
         }
         ShoppingCart cart = new ShoppingCart(productPrices);
 
-
         Scanner scanner = new Scanner(System.in);
         String input;
         boolean running = true;
@@ -22,12 +21,7 @@ public class Main {
         System.out.println("================= 장바구니 어플리케이션 =================");
         System.out.println("가능한 기능 : 추가, 삭제, 장바구니, 상품목록, 종료");
         System.out.println("추가와 삭제는 상품명과 수량을 입력하세요. ex) 추가 우유 3");
-
-        System.out.println("편의점 상품 목록:");
-        for (Product product : products) {
-            System.out.println(product.getName() + " : " + product.getPrice());
-        }
-
+        ShowProductList.formatProductList(productPrices);
         while (running) {
 
             System.out.print("명령어 입력: ");
@@ -63,10 +57,7 @@ public class Main {
                     }
                     break;
                 case "상품목록":
-                    System.out.println("편의점 상품 목록:");
-                    for (Product product : products) {
-                        System.out.println(product.getName() + " : " + product.getPrice());
-                    }
+                    ShowProductList.formatProductList(productPrices);
                     break;
                 case "장바구니":
                     cart.showItems();

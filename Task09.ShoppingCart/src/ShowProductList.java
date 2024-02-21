@@ -1,10 +1,12 @@
 import java.util.Map;
 
-public class FormatUtils {
-    public static String formatProductList(Map<String, Integer> items) {
+public class ShowProductList {
+    public static void formatProductList(Map<String, Integer> items) {
         if (items.isEmpty()) {
-            return "상품 목록이 비어있습니다.";
+            System.out.println("상품 목록이 비어있습니다.");
+            return;
         }
+        System.out.println("편의점 상품 목록:");
 
         int maxNameLength = items.keySet().stream()
                 .mapToInt(String::length)
@@ -12,10 +14,9 @@ public class FormatUtils {
                 .orElse(0);
 
         StringBuilder formattedList = new StringBuilder();
-        String format = "%-" + (maxNameLength + 1) + "s: %d\n";
+        String format = "%-" + (maxNameLength + 2) + "s: %d\n";
 
         items.forEach((name, quantity) -> formattedList.append(String.format(format, name, quantity)));
-
-        return formattedList.toString();
+        System.out.println(formattedList);
     }
 }
