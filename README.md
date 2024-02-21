@@ -101,11 +101,12 @@ public class CartApp {
 <summary> 파일 구조 </summary>
 
 ```Java
-ShoppingCartSystem/
+Task09.ShoppingCart/
 ├── src/
 │   ├── Main.java
-│   ├── ShoppingCart.java
 │   ├── Product.java
+│   ├── ShoppingCart.java
+│   ├── ShowProductList.java
 │   └── CSVReader.java
 └── data/
     └── products.csv
@@ -120,21 +121,34 @@ products.csv 파일
 <details>
 <summary> 구현 예시 </summary>
 
+## 기능 명세
+
+* **추가**   - csv 로 받아온 상품 리스트에 있는 물건만 장바구니에 추가가 가능하다.
+* **장바구니** - 장바구니에 담긴 물건과 개수, 총 금액을 확인할 수 있다.
+* **삭제**   - 장바구니에 있는 물건만 삭제가 가능하다. 삭제 시 수량이 변경된다.
+* **상품목록** - csv 파일의 상품명과 가격을 확인 할 수 있다. (format을 이용해 가독성을 높혔다.)
+* **종료**   - 어플리케이션을 종료한다.
+
 ### 초기 화면
-![image](https://github.com/khv9786/goorm_back/assets/96505736/fe31b044-66e9-4363-a574-c324cc936499)
+![image](https://github.com/khv9786/goorm_back/assets/96505736/1a42801c-f5a6-4a18-b3e1-867cc0f8ce6d)
 
 ---
 
-### 추가 함수
-![image](https://github.com/khv9786/goorm_back/assets/96505736/4f6fb104-4457-4a5a-830c-84062b39124a)
+### 추가
+![image](https://github.com/khv9786/goorm_back/assets/96505736/fc37f2f1-cba8-4113-9e11-cf5107c256ca)
 
 ---
 
-### 삭제 함수
-![image](https://github.com/khv9786/goorm_back/assets/96505736/94be88f9-5c69-4933-a127-45fd0bb3fdad)
+### 장바구니 확인
+![image](https://github.com/khv9786/goorm_back/assets/96505736/3ba89ae2-ae11-4a5e-bf09-7877103d93e7)
 
 ---
 
+### 삭제 
+![image](https://github.com/khv9786/goorm_back/assets/96505736/d0b73024-29e1-4272-85cb-2b581a9e2f91)
 
+---
+### 상품 목록
+![image](https://github.com/khv9786/goorm_back/assets/96505736/e3120579-0766-400c-a19f-2f1f76262e44)
 
 </details>
