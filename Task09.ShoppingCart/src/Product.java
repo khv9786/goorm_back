@@ -26,7 +26,7 @@ public class Product {
             return false;
         }
         Product product = (Product) o;
-        return Integer.compare(product.price, price) == 0 &&
+        return product.price == price &&
                 Objects.equals(name, product.name);
     }
 

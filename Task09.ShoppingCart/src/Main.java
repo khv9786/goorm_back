@@ -1,12 +1,19 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        ShoppingCart cart = new ShoppingCart();
         CSVReader reader = new CSVReader();
         String filePath = "data/products.csv"; // 파일명 확인 필요
         HashSet<Product> products = new HashSet<>(reader.readProductsFromFile(filePath));
+        Map<String, Integer> productPrices = new HashMap<>();
+        for (Product product : products) {
+            productPrices.put(product.getName(), (int) product.getPrice());
+        }
+        ShoppingCart cart = new ShoppingCart(productPrices);
+
 
         Scanner scanner = new Scanner(System.in);
         String input;
@@ -14,7 +21,7 @@ public class Main {
 
         System.out.println("================= 장바구니 어플리케이션 =================");
         System.out.println("가능한 기능 : 추가, 삭제, 장바구니, 상품목록, 종료");
-        System.out.println("추가와 삭제는 상품명과 수량을 입력하세요. ex) 추가 우유 3" );
+        System.out.println("추가와 삭제는 상품명과 수량을 입력하세요. ex) 추가 우유 3");
 
         System.out.println("편의점 상품 목록:");
         for (Product product : products) {
@@ -35,10 +42,9 @@ public class Main {
                         try {
                             int quantity = Integer.parseInt(parts[2]);
                             cart.addProduct(productName, quantity);
-                            System.out.println(productName + " " + quantity + "개가 장바구니에 추가되었습니다.");
                         } catch (NumberFormatException e) {
-                                System.out.println("수량에는 정수만 입력 가능합니다.");
-                            }
+                            System.out.println("수량에는 정수만 입력 가능합니다.");
+                        }
                     } else {
                         System.out.println("잘못 입력하셨습니다.. 사용법: 추가 <상품명> <수량>");
                     }
@@ -49,15 +55,14 @@ public class Main {
                         try {
                             int quantity = Integer.parseInt(parts[2]);
                             cart.removeProduct(productName, quantity);
-                            System.out.println(productName + " " + quantity + "개가 장바구니에서 삭제되었습니다.");
-                        }  catch (NumberFormatException e) {
+                        } catch (NumberFormatException e) {
                             System.out.println("수량에는 정수만 입력 가능합니다.");
                         }
                     } else {
                         System.out.println("잘못 입력하셨습니다.. 사용법: 추가 <상품명> <수량>");
                     }
                     break;
-                case "상품목록" :
+                case "상품목록":
                     System.out.println("편의점 상품 목록:");
                     for (Product product : products) {
                         System.out.println(product.getName() + " : " + product.getPrice());
